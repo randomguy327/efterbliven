@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Efterbliven.com — Den officiella hemsidan om Johan</title>
+<meta name="description" content="Den enda hemsidan som vågar säga sanningen om Johan. Han har alltid fel. Alltid." />
+<style>
+  :root {
+    --bg: #0e0e10;
+    --panel: #1a1a1f;
+    --panel-2: #22222a;
+    --text: #f5f5f7;
+    --muted: #a1a1aa;
+    --accent: #ff4d4d;
+    --accent-2: #ffd84d;
+    --border: #2a2a32;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent-2); }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(14, 14, 16, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand {
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    font-size: 1.05rem;
+  }
+  .brand .dot { color: var(--accent); }
+  .nav ul {
+    list-style: none;
+    display: flex;
+    gap: 22px;
+    margin: 0;
+    padding: 0;
+  }
+  .nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    transition: color 0.15s ease;
+  }
+  .nav a:hover { color: var(--text); }
+
+  .hero {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 80px 24px 60px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1.05;
+    margin: 0 0 18px;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 .highlight {
+    color: var(--accent);
+  }
+  .hero p.lede {
+    font-size: 1.2rem;
+    color: var(--muted);
+    margin: 0 0 28px;
+  }
+  .hero-img-wrap {
+    position: relative;
+    aspect-ratio: 3/4;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .hero-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .badge {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    background: var(--accent);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 14px rgba(255,77,77,0.45);
+  }
+
+  .stats {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .stat {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    flex: 1 1 120px;
+    min-width: 120px;
+  }
+  .stat .num {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent-2);
+    display: block;
+  }
+  .stat .label {
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  section {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+  section h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    margin: 0 0 12px;
+    letter-spacing: -0.02em;
+  }
+  section .sub {
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin: 0 0 36px;
+    max-width: 640px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+  .card .icon {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  .card h3 {
+    margin: 0 0 8px;
+    font-size: 1.15rem;
+  }
+  .card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .wrong-list {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 8px 0;
+    list-style: none;
+    margin: 0;
+  }
+  .wrong-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .wrong-list li:last-child { border-bottom: none; }
+  .wrong-list .x {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .wrong-list .topic {
+    font-weight: 600;
+  }
+  .wrong-list .reality {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-top: 2px;
+  }
+
+  .quote {
+    background: linear-gradient(135deg, var(--panel) 0%, var(--panel-2) 100%);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent-2);
+    padding: 30px 32px;
+    border-radius: 12px;
+    margin: 24px 0;
+    font-size: 1.15rem;
+    font-style: italic;
+  }
+  .quote .who {
+    display: block;
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 0.92rem;
+    font-style: normal;
+  }
+
+  .faq details {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 22px;
+    margin-bottom: 12px;
+    cursor: pointer;
+  }
+  .faq summary {
+    font-weight: 600;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: "+";
+    color: var(--accent-2);
+    font-size: 1.4rem;
+    font-weight: 300;
+  }
+  .faq details[open] summary::after { content: "−"; }
+  .faq details[open] {
+    border-color: var(--accent);
+  }
+  .faq .answer {
+    color: var(--muted);
+    margin-top: 12px;
+    font-size: 0.95rem;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+    padding: 40px 24px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+  footer .tiny {
+    margin-top: 8px;
+    font-size: 0.78rem;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 760px) {
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 50px 24px 40px;
+      gap: 32px;
+    }
+    .hero-img-wrap { max-width: 360px; margin: 0 auto; }
+    .nav ul { gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">efterbliven<span class="dot">.</span>com</div>
+    <ul>
+      <li><a href="#om">Om Johan</a></li>
+      <li><a href="#hobbies">Hobbies</a></li>
+      <li><a href="#fel">Saker han har fel om</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div>
+    <h1>Den officiella hemsidan om <span class="highlight">Johan</span>.</h1>
+    <p class="lede">
+      En vetenskapligt granskad resurs för dig som vill förstå varför Johan, oavsett ämne, alltid har fel. Uppdaterad i realtid.
+    </p>
+    <div class="stats">
+      <div class="stat">
+        <span class="num">100%</span>
+        <span class="label">Felprocent</span>
+      </div>
+      <div class="stat">
+        <span class="num">∞</span>
+        <span class="label">Smackningar/middag</span>
+      </div>
+      <div class="stat">
+        <span class="num">24/7</span>
+        <span class="label">Pruttberedskap</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-img-wrap">
+    <img src="johan.jpeg" alt="Johan i sin naturliga miljö" />
+    <span class="badge">Subjektet</span>
+  </div>
+</header>
+
+<section id="om">
+  <h2>Om Johan</h2>
+  <p class="sub">
+    Johan är en man i sin bästa ålder, känd för sin orubbliga övertygelse i frågor han inte vet något om. Han har en unik förmåga att vara säkrast i rummet på exakt det han har minst koll på.
+  </p>
+
+  <div class="quote">
+    "Nej men det är ju så det funkar, det vet ju alla."
+    <span class="who">— Johan, om något han precis hittade på</span>
+  </div>
+</section>
+
+<section id="hobbies">
+  <h2>Johans hobbies</h2>
+  <p class="sub">Han är en passionerad människa. Här är de aktiviteter han ägnar mest tid åt — sorterat efter ljudvolym.</p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="icon">💨</div>
+      <h3>Högljudd pruttning</h3>
+      <p>Olympisk nivå. Johan släpper inte ut luft — han <em>annonserar</em> den. Helst i rum med dålig ventilation och oskyldiga vittnen.</p>
+    </div>
+    <div class="card">
+      <div class="icon">😋</div>
+      <h3>Smackande vid bordet</h3>
+      <p>Varje tugga ackompanjeras av ett ljud som närmast kan beskrivas som en våtdammsugare som fått syrebrist. Konsistent. Stolt.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🗣️</div>
+      <h3>Ha fel med övertygelse</h3>
+      <p>En förfinad konstform. Ju mer fel, desto högre röst. Faktakontroll betraktas som personangrepp.</p>
+    </div>
+    <div class="card">
+      <div class="icon">📺</div>
+      <h3>Förklara saker han googlat i 4 sekunder</h3>
+      <p>Föredrar att förklara experters yrken för dem. "Det där är ju egentligen ganska enkelt om man tänker efter."</p>
+    </div>
+  </div>
+</section>
+
+<section id="fel">
+  <h2>Saker Johan har fel om</h2>
+  <p class="sub">Ett urval. En komplett lista skulle överskrida internets lagringskapacitet.</p>
+
+  <ul class="wrong-list">
+    <li>
+      <span class="x">✕</span>
+      <div>
+        <div class="topic">Hur man lastar diskmaskinen</div>
+        <div class="reality">Skålarna ska INTE staplas på det sättet, Johan.</div>
+      </div>
+    </li>
+    <li>
+      <span class="x">✕</span>
+      <div>
+        <div class="topic">Vägen till nästan vart som helst</div>
+        <div class="reality">"Jag vet en genväg" är de fyra farligaste orden i svenska språket.</div>
+      </div>
+    </li>
+    <li>
+      <span class="x">✕</span>
+      <div>
+        <div class="topic">Vad som hände i filmen vi precis såg</div>
+        <div class="reality">Han somnade efter 12 minuter. Ändå vet han bäst.</div>
+      </div>
+    </li>
+    <li>
+      <span class="x">✕</span>
+      <div>
+        <div class="topic">Tekniska saker över huvud taget</div>
+        <div class="reality">"Internet är trasigt." Routern var urdragen. Av Johan.</div>
+      </div>
+    </li>
+    <li>
+      <span class="x">✕</span>
+      <div>
+        <div class="topic">Hur gammal jag är</div>
+        <div class="reality">Han har gissat fel tre år i rad.</div>
+      </div>
+    </li>
+    <li>
+      <span class="x">✕</span>
+      <div>
+        <div class="topic">Vad jag jobbar med</div>
+        <div class="reality">"Något med datorer." Tack pappa.</div>
+      </div>
+    </li>
+    <li>
+      <span class="x">✕</span>
+      <div>
+        <div class="topic">Vädret imorgon</div>
+        <div class="reality">SMHI sa regn. Johan sa sol. Det blev snö.</div>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section id="faq" class="faq">
+  <h2>Vanliga frågor</h2>
+  <p class="sub">Inkomna från familjemedlemmar, grannar och förbipasserande.</p>
+
+  <details>
+    <summary>Är Johan medveten om att han har fel?</summary>
+    <div class="answer">Nej. Och om han skulle bli det, skulle han ha fel om det också.</div>
+  </details>
+  <details>
+    <summary>Kan man stoppa smackandet?</summary>
+    <div class="answer">Forskare har försökt. Resultaten är pessimistiska. En tystare matsked är under utveckling.</div>
+  </details>
+  <details>
+    <summary>Är pruttningen verkligen så hög?</summary>
+    <div class="answer">Mätningar pågår. Hittills har två rökdetektorer reagerat.</div>
+  </details>
+  <details>
+    <summary>Är detta menat som mobbning?</summary>
+    <div class="answer">Nej. Detta är dokumentation. Med kärlek. Mestadels.</div>
+  </details>
+  <details>
+    <summary>Kan jag bidra med fler exempel?</summary>
+    <div class="answer">Absolut. Skicka ditt bidrag till närmaste familjemedlem för granskning.</div>
+  </details>
+</section>
+
+<footer>
+  <div>© 2026 efterbliven.com — Allt innehåll är granskat av Johan, som tycker det är fel.</div>
+  <div class="tiny">Den här hemsidan är ett kärleksfullt skämt. Förmodligen.</div>
+</footer>
+
+</body>
+</html>
