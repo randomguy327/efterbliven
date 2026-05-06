@@ -333,13 +333,83 @@
   }
 
   @media (max-width: 760px) {
+    .nav-inner {
+      padding: 14px 18px;
+    }
+    .nav ul {
+      display: none;
+    }
     .hero {
       grid-template-columns: 1fr;
-      padding: 50px 24px 40px;
-      gap: 32px;
+      padding: 40px 20px 32px;
+      gap: 28px;
     }
-    .hero-img-wrap { max-width: 360px; margin: 0 auto; }
-    .nav ul { gap: 14px; }
+    .hero-img-wrap {
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    section {
+      padding: 44px 20px;
+    }
+    section h2 {
+      font-size: 1.7rem;
+    }
+    section .sub {
+      font-size: 0.98rem;
+      margin-bottom: 26px;
+    }
+    .stats {
+      gap: 8px;
+    }
+    .stat {
+      padding: 12px 14px;
+      flex: 1 1 100px;
+      min-width: 0;
+    }
+    .stat .num {
+      font-size: 1.4rem;
+    }
+    .stat .label {
+      font-size: 0.72rem;
+    }
+    .card {
+      padding: 20px;
+    }
+    .wrong-list li {
+      padding: 14px 18px;
+    }
+    .quote {
+      padding: 22px 20px;
+      font-size: 1.02rem;
+    }
+    .faq details {
+      padding: 14px 18px;
+    }
+    .support {
+      padding: 0 20px;
+    }
+    .support-card {
+      padding: 28px 22px;
+    }
+    .support-card h2 {
+      font-size: 1.35rem;
+    }
+    .support-card a.btn {
+      padding: 13px 22px;
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+    .hero p.lede {
+      font-size: 1rem;
+    }
+    .stats {
+      flex-direction: column;
+    }
   }
 </style>
 </head>
